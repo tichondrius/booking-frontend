@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
 
-export const FooterStyled = styled.div`
+export const HeaderWrapperStyled = styled.div`
 
 `;
