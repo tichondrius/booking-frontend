@@ -1,0 +1,26 @@
+{
+  "name": "booking-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "material-ui": "^0.19.4",
+    "react": "^16.0.0",
+    "react-document-title": "^2.0.3",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-scripts": "1.0.14",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-persist": "4",
+    "redux-saga": "^0.16.0"
+  },
+  "scripts": {
+    "start": "PORT=8989 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "styled-components": "^2.2.2"
+  }
+}
