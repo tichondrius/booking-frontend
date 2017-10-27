@@ -1,6 +1,6 @@
 # Booking Single Page App
 
-Fontend of Booking project
+Frontend of Booking project
 
 ## Getting Started
 
