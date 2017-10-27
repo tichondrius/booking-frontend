@@ -33,7 +33,7 @@ const Header = (props) => {
   }
   const iconRight = wasLogged ?  
     <LoggedButton onLogout={() => logout()}/> : 
-    <LoginButton onClick={() => login('tichondrius', '123456')}/>
+    <LoginButton onClick={() => props.history.push(ROUTE_PATH.LOGIN)}/>
   return (
     <HeaderWrapperStyled>
       <AppBar

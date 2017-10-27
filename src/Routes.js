@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { App } from './modules/core/components'
+import { LoginPage } from './modules/login/containers';
 
 import configureStore from './redux/configureStore'
 
@@ -35,7 +36,7 @@ export default class Routes extends Component {
             <App>
               <Switch>
                 <Route path={ROUTE_PATH.HOME} component={FakeHome} />
-                <Route path={ROUTE_PATH.LOGIN} component={FakeLogin} />
+                <Route path={ROUTE_PATH.LOGIN} component={LoginPage} />
                 <Route path={ROUTE_PATH.PAGE1} component={FakePage1} />
                 <LoginRequired path={ROUTE_PATH.PAGE2} exact component={FakePage2} />
               </Switch>
