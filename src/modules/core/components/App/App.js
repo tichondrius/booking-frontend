@@ -4,17 +4,17 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { Header, Footer } from '../../components';
-import { BodyWrapperStyled } from '../../stylesheets/core.styles';
+import { BodyWrapperStyled, SiteWrapperStyled } from '../../stylesheets/core.styles';
 
 const App = ({ children }) => {
   return (
       <DocumentTitle title="Booking website">
         <MuiThemeProvider>
-          <Header />
           <BodyWrapperStyled>
+            <Header />
             { children }
+            <Footer />
           </BodyWrapperStyled>
-          <Footer /> 
         </MuiThemeProvider>
       </DocumentTitle>
   );

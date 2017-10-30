@@ -4,18 +4,20 @@ import RaisedButton from 'material-ui/RaisedButton';
 import LinearProgress from 'material-ui/LinearProgress';
 
 export const BodyWrapperStyled = styled.div`
-  max-width: 900px;
+  min-height: calc(100vh - 120px);
+  overflow: overlay;
+  width: 100%;
+  max-width: 1024px;
   margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  @media (max-width: 700px) {
-    margin-left: 10px;
-    margin-right: 10px;
-	}
 `;
 
 export const ContainerWrapperStyled = styled.div`
-  flex: 1;
+  padding: 0 15px;
+  padding-top: 20px;
+`;
+
+export const SiteWrapperStyled = styled.div`
+
 `;
 
 export const TextFieldStyled = styled(TextField)`
