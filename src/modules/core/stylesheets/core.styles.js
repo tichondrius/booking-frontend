@@ -14,6 +14,7 @@ export const BodyWrapperStyled = styled.div`
 export const ContainerWrapperStyled = styled.div`
   padding: 0 15px;
   padding-top: 20px;
+  flex: 1;
 `;
 
 export const SiteWrapperStyled = styled.div`
