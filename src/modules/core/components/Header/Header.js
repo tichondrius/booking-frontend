@@ -13,14 +13,14 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Drawer from 'material-ui/Drawer';
 
 import { HeaderWrapperStyled } from '../../stylesheets/header.style';
-import { openDrawer, closeDrawer } from '../../../../redux/modules/uiReducer';
+import { openDrawer, closeDrawer, toggleDrawer } from '../../../../redux/modules/uiReducer';
 import { authLogin, authLogout } from '../../../../redux/modules/authReducer'
 import { LoginButton, LoggedButton } from '../../components';
 import { ROUTE_PATH } from '../../../../Routes';
 
 const Header = (props) => {
   const { changeOpenDrawer, changeCloseDrawer, isDrawerOpening,
-    wasLogged, login, logout, history } = props;
+    wasLogged, login, logout, history, changeStateDrawer } = props;
   const renderMenuItem = (item) => (
     <MenuItem key={item} onClick={() => changeCloseDrawer()}>{item}</MenuItem>
   );
@@ -37,7 +37,7 @@ const Header = (props) => {
   return (
     <HeaderWrapperStyled>
       <AppBar
-        onLeftIconButtonTouchTap={() => changeOpenDrawer()}
+        onLeftIconButtonTouchTap={() => changeStateDrawer()}
         iconElementRight={iconRight}
         title="Booking app"
       />
@@ -66,14 +66,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  changeStateDrawer: () => dispatch(toggleDrawer()),
   changeOpenDrawer: () => dispatch(openDrawer()),
   changeCloseDrawer: () => dispatch(closeDrawer()),
   login: (username, password) => {
     dispatch(authLogin(username, password));
   },
   logout: () => dispatch(authLogout())
-
-  
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

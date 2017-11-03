@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 export const IntroducePanelStyled = styled.div`
   width: 100%;
   display: flex;
@@ -35,4 +35,24 @@ export const BranchDescStyled = styled.div`
 
 export const BottomPanelStyled = styled.div`
   flex: 1;
+  flex-direction: column;
+  
+`
+
+export const InfoMoreStyled = styled(Card)`
+  flex: 1;
+  margin: 10px;
+  padding: 10px;
+`
+
+export const HeadingInfoStyled = styled.h2`
+  color: rgb(0,188,212);
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 5px;
+  font-size: 18px;
+`
+
+export const DescInfoStyled = styled(CardText)`
+  
 `

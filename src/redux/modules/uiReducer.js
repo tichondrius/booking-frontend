@@ -4,7 +4,7 @@ export const TOGGLE_DRAWER = 'ui/TOGGLE_DRAWER';
 export const FLUSH_UI = 'ui/FLUSH_UI';
 
 
-export const toggleDrawer = ({
+export const toggleDrawer = () => ({
   type: TOGGLE_DRAWER,
 });
 
