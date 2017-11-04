@@ -20,8 +20,7 @@ export const ContentBlockStyled = styled.div`
 
 export const ContentBlockAllStyled = styled.div`
   display: flex;
-  padding-left: 30px;
-  padding-right: 30px;
+  margin-bottom: 10px;
   @media(max-width: 840px){
     flex-direction: column;
     padding: 3px;
@@ -32,14 +31,29 @@ export const ContainerWrapperStyled = styled.div`
   padding: 0 15px;
   padding-top: 20px;
   flex: 1;
+  margin-bottom: 50px;
+  @media(max-width: 840px){
+    padding: 10px;
+    padding-top: 20px;
+  }
 `;
 
 export const ContentBlockLStyled = styled.div`
   flex: 1;
+  margin-right: 10px;
+  @media(max-width: 840px){
+   margin-right: 0px;
+   margin-bottom: 5px;
+  }
 `;
 
 export const ContentBlockRStyled = styled.div`
   flex: 0 0 45%;
+  margin-left: 10px;
+  @media(max-width: 840px){
+    margin-left: 0px;
+    margin-bottom: 5px;
+   }
   ${props => props.barCode && css`
     text-align: center;
   `}
@@ -67,7 +81,6 @@ export const LoadingProgressStyled = styled(LinearProgress)`
 `
 
 export const ButtonWrapper = styled.div`
-  flex: 1;
   margin: 0 auto;
 `
 

@@ -41,7 +41,6 @@ export const BottomPanelStyled = styled.div`
 
 export const InfoMoreStyled = styled(Card)`
   flex: 1;
-  margin: 10px;
   padding: 10px;
 `
 
