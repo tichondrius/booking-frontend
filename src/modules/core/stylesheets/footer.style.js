@@ -4,5 +4,5 @@ export const FooterWrapperStyled = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1024px;
 `;

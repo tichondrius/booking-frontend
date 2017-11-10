@@ -4,13 +4,15 @@ import { Provider } from 'react-redux';
 import { App } from './modules/core/components'
 import { LoginPage } from './modules/login/containers';
 import { HomePage } from './modules/home/containers';
-
+import { SearchPage  } from './modules/search/containers';
 import configureStore from './redux/configureStore'
 
 import LoginRequired from './utils/LoginRequired';
 
+
 export const ROUTE_PATH = {
   ROOT: '/',
+  SEARCH: '/search', 
   HOME: '/home',
   LOGIN: '/login',
   PAGE1: '/page1',
@@ -33,9 +35,8 @@ export default class Routes extends Component {
         <Router>
             <App>
               <Switch>
-                
                 <Route path={ROUTE_PATH.HOME} component={HomePage} />
-                <Route path={ROUTE_PATH.HOME} component={HomePage} />
+                <Route path={ROUTE_PATH.SEARCH} component={SearchPage} />
                 <Route path={ROUTE_PATH.LOGIN} component={LoginPage} />
                 <Route path={ROUTE_PATH.PAGE1} component={FakePage1} />
                 <LoginRequired path={ROUTE_PATH.PAGE2} exact component={FakePage2} />

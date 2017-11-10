@@ -48,8 +48,8 @@ const Header = (props) => {
         <MenuItem onClick={() => changeRoute(ROUTE_PATH.LOGIN)}>
           Login
         </MenuItem>
-        <MenuItem onClick={() => changeRoute(ROUTE_PATH.PAGE1)}>
-          Page1 (No login required)
+        <MenuItem onClick={() => changeRoute(ROUTE_PATH.SEARCH)}>
+          Tìm kiếm
         </MenuItem>
         <MenuItem onClick={() => changeRoute(ROUTE_PATH.PAGE2)}>
           Page1 (Login required)

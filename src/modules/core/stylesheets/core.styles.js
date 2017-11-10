@@ -2,12 +2,13 @@ import styled, { css } from 'styled-components';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import LinearProgress from 'material-ui/LinearProgress';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 
 export const BodyWrapperStyled = styled.div`
   min-height: calc(100vh - 0px);
   overflow: overlay;
   width: 100%;
-  max-width: 1200px ;
+  max-width: 1024px;
   margin: 0 auto;
   background: #fff;
 `;
@@ -83,4 +84,5 @@ export const LoadingProgressStyled = styled(LinearProgress)`
 export const ButtonWrapper = styled.div`
   margin: 0 auto;
 `
-
+export const CardStyled = styled(Card)`
+`
