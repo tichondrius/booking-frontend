@@ -37,7 +37,7 @@ const FormSearch = (props) => {
           </CardStyled>
           <CardStyled style={{ flex: 1}}>
             <CardBodyWrapper>
-              <ButtonStyled label="Chọn lại tiêu chí" fullSize/>
+              <ButtonStyled label="Chọn lại tiêu chí" fullWidth primary/>
             </CardBodyWrapper>
           </CardStyled>
         </Tab>

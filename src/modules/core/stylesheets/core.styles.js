@@ -92,7 +92,11 @@ export const CardTitleStyled = styled(CardTitle)`
 
 `
 export const CardHeaderStyled = styled(CardHeader)`
-   
+  & > div {
+    & > span {
+      font-weight: 600;
+    }
+  }
 `
 export const SliderStyled = styled(Slider)`
    & > div {
