@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import LinearProgress from 'material-ui/LinearProgress';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import Slider from 'material-ui/Slider';
 
 export const BodyWrapperStyled = styled.div`
   min-height: calc(100vh - 0px);
@@ -85,4 +86,17 @@ export const ButtonWrapper = styled.div`
   margin: 0 auto;
 `
 export const CardStyled = styled(Card)`
+`
+
+export const CardTitleStyled = styled(CardTitle)`
+
+`
+export const CardHeaderStyled = styled(CardHeader)`
+   
+`
+export const SliderStyled = styled(Slider)`
+   & > div {
+     margin-top: 10px !important;
+     margin-bottom: 10px !important;
+   }
 `
