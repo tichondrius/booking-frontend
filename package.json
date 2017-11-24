@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
+    "google-map-react": "^0.25.0",
     "material-ui": "^0.19.4",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
@@ -11,10 +13,12 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
+    "react-slick": "^0.15.4",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-persist": "4",
-    "redux-saga": "^0.16.0"
+    "redux-saga": "^0.16.0",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",
