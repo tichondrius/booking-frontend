@@ -25,7 +25,7 @@ const InforRoom = ({title, address,background}) => (
       </Column>
       <Column md="8" sm = "8">
         <HeadingInfoStyled>{title}</HeadingInfoStyled>
-        <ContentBlockStyled>{address}</ContentBlockStyled>
+        <HeadingInfoStyled>{address}</HeadingInfoStyled>
         <IconStartWrapper>
             <OverallScore >
                     <span>{8}+</span>

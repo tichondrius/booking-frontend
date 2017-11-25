@@ -17,34 +17,36 @@ import {
 // import { IntroducePanelStyled,
 //   TopPanelStyled, BranchStyled, BranchDescStyled, BottomPanelStyled
 //   } from '../stylesheets/homepage.style';
+import { connect } from 'react-redux';
+import { FetchByID } from '../../../redux/modules/roomReducer'
 
 import { InforRoom, Detailnfo,PriceComp} from '../components'; 
 import { ROUTE_PATH } from '../../../Routes';
 import mapImage from '../../../images/test.jpg';
 
-export default  class RoomDetailPage extends React.Component {
+ class RoomDetailPage extends React.Component {
 
-  loadRoomsByIdFromServer(id){
+  // loadRoomsByIdFromServer(id){
     
-    console.log(id);
-    const url = "https://chiasephong.herokuapp.com/api/posts/" + id;
-    axios.get(url)
-    .then(res => {
+  //   console.log(id);
+  //   const url = "https://chiasephong.herokuapp.com/api/posts/" + id;
+  //   axios.get(url)
+  //   .then(res => {
       
-      this.setState({ data: res.data[0] });
-      console.log(this.state.data.title);
-    })
-  }
+  //     this.setState({ data: res.data[0] });
+  //     console.log(this.state.data.title);
+  //   })
+  // }
   componentDidMount() {
 
 
-    //RomApi.getRooms(rooms);
    // console.log(this.props.match.params.id);
-    this.loadRoomsByIdFromServer(this.props.match.params.id);
-    // if(!this.pollInterval){
-    //   this.pollInterval = setInterval(this.loadRoomsByIdFromServer,2000);
-    // }
+   // this.loadRoomsByIdFromServer(this.props.match.params.id);
+
    
+  }
+  componentWillMount(){
+    this.props.loadRoom(this.props.match.params.id);
   }
   constructor(props) {
     super(props);
@@ -52,12 +54,14 @@ export default  class RoomDetailPage extends React.Component {
     var foo = {}
 
     console.log(this.props);
-    this.loadRoomsByIdFromServer = this.loadRoomsByIdFromServer.bind(this);
+    //this.loadRoomsByIdFromServer = this.loadRoomsByIdFromServer.bind(this);
     this.pollInterval = null;
 
   }
   render(){
-
+    const { title,address,price} = this.props.room;
+    console.log(address);
+    //console.log(this.props.room.description);
     return (
       <DocumentTitle title="Booking App - Room Details">
     
@@ -66,15 +70,15 @@ export default  class RoomDetailPage extends React.Component {
           <ContentBlockLStyled>
         
                   <InforRoom
-                  title = {this.state.data.title}
+                  title = {title}
                   background = {mapImage}
-                  content={this.state.data.description}
+                  address={address}
              />  
               
               
           </ContentBlockLStyled>
           <ContentBlockRStyled>
-              <PriceComp text="test" discountPrice ="100" currentPrice= {this.state.data.price}/>
+              <PriceComp text="test" discountPrice ="100" currentPrice= {price}/>
           </ContentBlockRStyled>>
       </ContentBlockAllStyled>
           
@@ -90,4 +94,14 @@ export default  class RoomDetailPage extends React.Component {
 }
 
 
+export const mapPropsToState = (state) => ({
+  error: state.auth.errorMessage,
+  fetched: state.room.fetched,
+  room : state.room.room,
+})
 
+export const mapProps = dispatch => ({
+  loadRoom: (id) => dispatch(FetchByID(id)),
+})
+
+export default connect(mapPropsToState, mapProps)(RoomDetailPage);

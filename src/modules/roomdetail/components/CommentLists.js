@@ -20,7 +20,8 @@ const CommentLists= (props) =>{
   var rows = [], i = 0;
   while (++i <= len) rows.push(i);
   const renderStart = (starValue) => (
-    <Row>
+    <ContainerWrapperStyled key={starValue}>
+        <Row >
     <Column md="2" sm="2">
     <TestFlexColumn>
         <Avatar src={logo} />
@@ -42,14 +43,16 @@ const CommentLists= (props) =>{
       <span> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ego vero isti, inquam, permitto. Dempta enim aeternitate nihilo beatior Iuppiter quam Epicurus; Duo Reges: constructio interrete. Apparet statim, quae sint officia, quae actiones. Quae cum essent dicta, finem fecimus et ambulandi et disputandi. Quod si ita se habeat, non possit beatam praestare vitam sapientia. Licet hic rursus ea commemores, quae optimis verbis ab Epicuro de laude amicitiae dicta sunt.</span>
     </Column>
     </Row>
+    </ContainerWrapperStyled>
+    
   );
   return(
-    <ContainerWrapperStyled>
+    <TestFlexColumn>
       {
         // console.log(comment)
         rows.map(val => renderStart(val))
       }
-    </ContainerWrapperStyled>
+    </TestFlexColumn>
   );
 }
 export default CommentLists;

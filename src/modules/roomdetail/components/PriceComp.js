@@ -26,7 +26,7 @@ const PriceComp = ({ text,discountPrice,currentPrice }) =>{
             {discountPrice}
          </DiscountPrice>
          <CurrentPrice>{currentPrice}</CurrentPrice>
-         <ButtonStyled>Click To buy</ButtonStyled>
+         <ButtonStyled>Book Room</ButtonStyled>
         </TestFlexColumn>);
    
     

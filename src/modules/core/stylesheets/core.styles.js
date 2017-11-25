@@ -74,7 +74,6 @@ export const TextFieldStyled = styled(TextField)`
 
 export const ButtonStyled = styled(RaisedButton)`
   margin-top: 10px;
-  margin-bottom: 10px;
 `
 
 export const LoadingProgressStyled = styled(LinearProgress)`

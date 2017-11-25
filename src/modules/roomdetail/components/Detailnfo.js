@@ -11,8 +11,8 @@ import {
 
 import { 
    HeadingInfoStyled, MapContainerStyled,OverallScore,IconStartWrapper,BoldText,
-   CommentStyled,TestTest,TestFlexColumn
-   
+   CommentStyled,TestTest,InformationContainer,ContainerDetailInforStyled,TestFlexColumn,
+   ImageContainerStyled,DividerHoz
 } from '../stylesheets/roomdetail.style';
 import { CommentLists } from '../components'; 
 import { Row, Column } from '../../core/stylesheets/column-row.styles'; 
@@ -51,40 +51,47 @@ export default  class Detailnfo extends React.Component {
      return (
       <Tabs>
         <Tab label ="Thong tin">
-        <div style={{width: '100%', height: '400px'}}> 
-        <GoogleMapReact
-            defaultCenter={this.props.center}
-            defaultZoom={this.props.zoom}
-          >
-              <AnyReactComponent 
-              lat={59.955413} 
-              lng={30.337844} 
-              text={'Kreyser Avrora'} 
-            />
-          </GoogleMapReact>
-        </div>
+        <ContentBlockAllStyled>
+          <ContainerWrapperStyled>
+            <HeadingInfoStyled>Dia diem</HeadingInfoStyled>
+          </ContainerWrapperStyled>
+          <ContainerDetailInforStyled>
+              <InformationContainer>
+                  <div style={{width: '100%', height: '400px'}}> 
+                  <GoogleMapReact
+                      defaultCenter={this.props.center}
+                      defaultZoom={this.props.zoom}
+                    >
+                        <AnyReactComponent 
+                        lat={59.955413} 
+                        lng={30.337844} 
+                        text={'Kreyser Avrora'} 
+                      />
+                    </GoogleMapReact>
+                </div>
+                <HeadingInfoStyled>Address</HeadingInfoStyled>
+              </InformationContainer>
+              
+
+          </ContainerDetailInforStyled>
+        </ContentBlockAllStyled>
+        
          
         </Tab>
         <Tab label ="Hinh anh">
             <Slider {...settings}>
-            <div><MapContainerStyled style={{backgroundImage:`url(${mapImage})`}}>
-            <ButtonStyled label="Đến bản đồ"></ButtonStyled>
-        </MapContainerStyled></div>
-            <div><MapContainerStyled style={{backgroundImage:`url(${mapImage})`}}>
-            <ButtonStyled label="Đến bản đồ"></ButtonStyled>
-        </MapContainerStyled></div>
-            <div><MapContainerStyled style={{backgroundImage:`url(${mapImage})`}}>
-            <ButtonStyled label="Đến bản đồ"></ButtonStyled>
-        </MapContainerStyled></div>
-            <div><MapContainerStyled style={{backgroundImage:`url(${mapImage})`}}>
-            <ButtonStyled label="Đến bản đồ"></ButtonStyled>
-        </MapContainerStyled></div>
-            <div><MapContainerStyled style={{backgroundImage:`url(${mapImage})`}}>
-            <ButtonStyled label="Đến bản đồ"></ButtonStyled>
-        </MapContainerStyled></div>
-            <div><MapContainerStyled style={{backgroundImage:`url(${mapImage})`}}>
-            <ButtonStyled label="Đến bản đồ"></ButtonStyled>
-        </MapContainerStyled></div>
+            <div><ImageContainerStyled style={{backgroundImage:`url(${mapImage})`}}>
+        </ImageContainerStyled></div>
+            <div><ImageContainerStyled style={{backgroundImage:`url(${mapImage})`}}>
+        </ImageContainerStyled></div>
+            <div><ImageContainerStyled style={{backgroundImage:`url(${mapImage})`}}>
+        </ImageContainerStyled></div>
+            <div><ImageContainerStyled style={{backgroundImage:`url(${mapImage})`}}>
+        </ImageContainerStyled></div>
+            <div><ImageContainerStyled style={{backgroundImage:`url(${mapImage})`}}>
+        </ImageContainerStyled></div>
+            <div><ImageContainerStyled style={{backgroundImage:`url(${mapImage})`}}>
+        </ImageContainerStyled></div>
           </Slider>
         </Tab>
         <Tab label ="Nhan xet">
@@ -104,14 +111,14 @@ export default  class Detailnfo extends React.Component {
                 </TestFlexColumn>
                 
               </Column>
-              <Column md="4" sm = "4"><h3>3</h3></Column>
-              <Column md="4" sm = "4">
+
+              <Column md="8" sm = "8">
                 <TestFlexColumn>
                   <HeadingInfoStyled>
-                    Chia se nhan xet
+                        Chia sẻ nhận xét về dịch vụ
                   </HeadingInfoStyled>
                   <ButtonStyled>
-                    HI
+                    Viết nhận xét của bạn
                   </ButtonStyled>
                 </TestFlexColumn>
               

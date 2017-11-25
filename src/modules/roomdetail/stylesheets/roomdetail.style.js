@@ -26,11 +26,27 @@ display: flex;
 margin-bottom: 10px;
 flex-direction: column;
 align-items: center;
-border-left: thin solid grey;
-
 
 `
 
+
+export const InformationContainer = styled.div`
+display: flex;
+margin-bottom: 10px;
+flex-direction: column;
+
+
+`
+export const ContainerDetailInforStyled = styled.div`
+padding: 0 15px;
+padding-top: 20px;
+flex: 5;
+margin-bottom: 50px;
+@media(max-width: 840px){
+  padding: 10px;
+  padding-top: 20px;
+}
+`;
 export const IconStartWrapper = styled.div`
 padding: 5px;
 height: 40px;
@@ -45,6 +61,13 @@ export const CommentStyled = styled(Card)`
 margin-top: 5px;
 `
 
+export const DividerHoz = styled.div`
+width: 100%;
+height: 100%;
+border-right-width: thin;
+border-right-style: dotted;
+border-right-color: coral;
+`
 
 
 export const MapContainerStyled = styled(Card)`
@@ -56,7 +79,15 @@ align-items: flex-end;
 border: 8px solid white;
 margin-bottom: 1px;
 `
+export const ImageContainerStyled = styled(Card)`
 
+display: flex;
+height: 500px;
+justify-content: center;
+align-items: flex-end;
+border: 8px solid white;
+margin-bottom: 1px;
+`
 export const BoldText = styled.span`
 
 margin-left: 10px;
