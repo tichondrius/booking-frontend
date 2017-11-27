@@ -1,28 +1,22 @@
 import { REHYDRATE } from 'redux-persist/constants';
 import { takeEvery, call, take, put, all, select } from 'redux-saga/effects';
 import axios from 'axios';
+
 import {
     FETCH_ROOM_BYID,FetchedFullFilledByID
   } from '../modules/roomReducer'
+import request from './core.saga';
 
-  const getRoom = (id) => new Promise((resolve, reject) => {
-    setTimeout(() => {
-        console.log("caleed");
-        const url = "https://chiasephong.herokuapp.com/api/posts/" + id;
-        axios.get(url)
-        .then(res => {
-            
-            resolve(res)
-            
-            console.log(res);
-        })
-    }, 2000);
+  export const getRoom = (id) => ({
+    url: `api/posts/${id}`,
+    method: 'GET',
   });
+
   
   export function* getRoomByID(action) {
     try {
       const { roomID } = action;
-      const response = yield call(getRoom, roomID);
+      const response = yield call(request, getRoom(roomID));
       console.log('response', response);
       const { data, error } = response;
       if (error) {
