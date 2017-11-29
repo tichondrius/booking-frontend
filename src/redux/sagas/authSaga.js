@@ -20,9 +20,7 @@ export function* login(action) {
   try {
     const { username, password } = action;
     const option = postLogin(username, password);
-    console.log(option);
     const response = yield call(request, postLogin(username, password));
-    console.log('response', response);
     const { data } = response;
     yield put(authLoginSuccess({
       token: data.token,

@@ -1,5 +1,5 @@
 export const postLogin = (username, password) => ({
-  method: 'post',
+  method: 'POST',
   url: 'token',
   data: {
     username,

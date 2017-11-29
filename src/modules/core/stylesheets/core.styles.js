@@ -109,3 +109,9 @@ export const ErrorPanelStyled = styled.div`
    color: #E91E63;
  }
 `
+
+export const LoadingWrapper = styled.div`
+ display: flex;
+ align-items: center;
+ justify-content: center;
+`
