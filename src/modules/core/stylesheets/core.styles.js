@@ -103,3 +103,9 @@ export const SliderStyled = styled(Slider)`
      margin-bottom: 10px !important;
    }
 `
+
+export const ErrorPanelStyled = styled.div`
+ & > li {
+   color: #E91E63;
+ }
+`

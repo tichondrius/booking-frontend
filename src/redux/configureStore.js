@@ -31,7 +31,7 @@ export default function configureStore() {
 
   persistStore(
     store,
-    { blacklist: ['ui'] });
+    { blacklist: ['ui', 'room', 'config'] });
 
   return store;
 }

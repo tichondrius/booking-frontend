@@ -19,6 +19,7 @@ export default function* request(option) {
     option.headers.Authorization = `Bearer ${token}`;
   }
   const response = yield call(instance.request, option);
+  console.log('response', response);
   const { code } = response;
   // We should dipatch log out when reveived 401, 403 network status
   if (code === 401 || code === 403) {

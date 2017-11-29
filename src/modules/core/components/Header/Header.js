@@ -62,7 +62,7 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => ({
   isDrawerOpening: state.ui.isDrawerOpening,
-  wasLogged: state.auth.isPersisted && Boolean(state.auth.token),
+  wasLogged: state.config.isPersisted && Boolean(state.auth.token),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -3,38 +3,42 @@ export const AUTH_LOGIN_SUCCESS = 'auth/AUTH_LOGIN_SUCCESS';
 export const AUTH_LOGIN_FAILE = 'auth/AUTH_LOGIN_FAILE';
 export const AUTH_LOGOUT = 'auth/AUTH_LOGOUT';
 export const FLUSH_LOGIN = 'auth/FLUSH_LOGIN';
-export const APP_PERSISTED = 'auth/PERSISTED';
+export const FLUSH_ERROR_LOGIN = 'auth/FLUSH_ERROR_LOGIN';
+
 
 export const authLogin = (username, password) => ({
   type: AUTH_LOGIN,
   username,
   password,
-})
+});
 
 export const authLogout = () => ({
   type: AUTH_LOGOUT,
-})
+});
 
 export const authLoginSuccess = ({ token, username }) => ({
   type: AUTH_LOGIN_SUCCESS,
   token,
   username,
-})
+});
 
 export const authLoginFaile = (errorMessage) => ({
   type: AUTH_LOGIN_FAILE,
   errorMessage,
-})
+});
 
-export const persistedDone = () => ({
-  type: APP_PERSISTED,
-})
+export const flushErrorLogin = () => ({
+  type: FLUSH_ERROR_LOGIN,
+});
+
+
+
+
 
 const initialState = {
   token: null,
   username: null,
   isLogging: false,
-  isPersisted: false,
   errorMessage: null,
 }
 
@@ -45,6 +49,7 @@ const authReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isLogging: true,
+        errorMessage: null,
       }
 
     case AUTH_LOGIN_SUCCESS:
@@ -72,13 +77,13 @@ const authReducer = (state = initialState, action = {}) => {
         username:null,
         errorMessage: null,
       }
-    
-    case APP_PERSISTED:
+    case FLUSH_ERROR_LOGIN: {
       return {
         ...state,
-        isPersisted: true,
+        errorMessage: null,
       }
-    
+    }
+
     case FLUSH_LOGIN: 
       return initialState;
     

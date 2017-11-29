@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { App } from './modules/core/components'
 import { LoginPage } from './modules/login/containers';
@@ -11,7 +11,8 @@ import { SearchPage  } from './modules/search/containers';
 import configureStore from './redux/configureStore'
 
 import LoginRequired from './utils/LoginRequired';
-
+import RouteMiddleware from './utils/RouteMiddleware';
+import Route from './utils/Route';
 
 export const ROUTE_PATH = {
   ROOT: '/',
@@ -20,7 +21,7 @@ export const ROUTE_PATH = {
   LOGIN: '/login',
   PAGE1: '/page1',
   PAGE2: '/page2',
-  ROOMDETAILS: '/test/:id'
+  ROOMDETAILS: '/room/:id'
 }
 const FakeLogin = () => (
   <h2>Login</h2>
@@ -37,6 +38,7 @@ export default class Routes extends Component {
     return (
       <Provider store={configureStore()}>
         <Router>
+          <RouteMiddleware>
             <App>
               <Switch>
                 <Route path={ROUTE_PATH.HOME} component={HomePage} />
@@ -49,6 +51,7 @@ export default class Routes extends Component {
                 <Redirect from={ROUTE_PATH.ROOT} to={ROUTE_PATH.HOME} />
               </Switch>
             </App>
+          </RouteMiddleware>
         </Router>
       </Provider>
     );

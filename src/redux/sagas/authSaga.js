@@ -1,23 +1,14 @@
 import { REHYDRATE } from 'redux-persist/constants';
 import { takeEvery, call, take, put, all, select } from 'redux-saga/effects';
+import _ from 'lodash';
 
 import {
-  persistedDone, authLoginFaile, authLoginSuccess,
+  authLoginFaile, authLoginSuccess,
   AUTH_LOGIN, AUTH_LOGOUT
-} from '../modules/authReducer'
-
-const fakeLogin = (username, password) => new Promise((resolve, reject) => {
-  setTimeout(() => {
-    const response = {
-      data: {
-        username: username,
-        token: 'abcxyz--token',
-      },
-      statusCode: 200,
-    }
-    resolve(response)
-  }, 2000);
-});
+} from '../modules/authReducer';
+import { persistedDone } from '../modules/configReducer';
+import { postLogin } from '../../api-services/auth';
+import request from './coreSaga';
 
 
 export function* afterPersist() {
@@ -28,27 +19,18 @@ export function* afterPersist() {
 export function* login(action) {
   try {
     const { username, password } = action;
-    const response = yield call(fakeLogin, username, password);
+    const option = postLogin(username, password);
+    console.log(option);
+    const response = yield call(request, postLogin(username, password));
     console.log('response', response);
-    const { data, error } = response;
-    if (error) {
-      // should put login faile
-      yield put(authLoginFaile('unknow'));
-    }
-    else {
-      if (data.error) {
-        yield put(authLoginFaile(error));
-      }
-      else {
-        const { token, username } = data;
-        yield put(authLoginSuccess({
-          token,
-          username
-        }))
-      }
-    }
+    const { data } = response;
+    yield put(authLoginSuccess({
+      token: data.token,
+      username: data.username,
+    }));
   } catch(error) {
-    yield put(authLoginSuccess());
+    const errors = _.get(error, 'response.data.lstErr', 'unknow');
+    yield put(authLoginFaile(errors));
   }
 }
 

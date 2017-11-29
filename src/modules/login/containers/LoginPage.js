@@ -4,9 +4,9 @@ import DocumentTitle from 'react-document-title';
 import TextField from 'material-ui/TextField';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
-import { authLogin } from '../../../redux/modules/authReducer'
+import { authLogin, flushErrorLogin } from '../../../redux/modules/authReducer'
 
-import { ContainerWrapperStyled, TextFieldStyled, ButtonStyled, LoadingProgressStyled } from '../../core/stylesheets/core.styles'
+import { ContainerWrapperStyled, TextFieldStyled, ButtonStyled, LoadingProgressStyled, ErrorPanelStyled } from '../../core/stylesheets/core.styles'
 import { PaperStyled, } from '../stylesheets/login.page.style'
 import { ROUTE_PATH } from '../../../Routes';
 
@@ -17,6 +17,9 @@ class LoginPage extends Component {
       username: '',
       password: '',
     };
+  }
+  componentWillMount() {
+    this.props.flushError();
   }
   handleLogin = () => {
     const { username, password } = this.state;
@@ -38,7 +41,19 @@ class LoginPage extends Component {
     return (
       <DocumentTitle title="Booking App - Login">
         <ContainerWrapperStyled>
+        
+          
           <PaperStyled>
+             {
+           Array.isArray(error) && error.length > 0 &&
+           <ErrorPanelStyled>
+              { error.map(err => (
+                <li>
+                  {err}
+                </li>
+              ))}
+           </ErrorPanelStyled>
+         }
             <TextFieldStyled
               fullWidth={true}
               hintText="Username"
@@ -68,11 +83,12 @@ class LoginPage extends Component {
 export const mapPropsToState = (state) => ({
   error: state.auth.errorMessage,
   isLogging: state.auth.isLogging,
-  isAuth: state.auth.isPersisted && Boolean(state.auth.token),
+  isAuth: state.config.isPersisted && Boolean(state.auth.token),
 })
 
 export const mapProps = dispatch => ({
   login: (username, password) => dispatch(authLogin(username, password)),
+  flushError: () => dispatch(flushErrorLogin()),
 })
 
 export default connect(mapPropsToState, mapProps)(LoginPage);

@@ -5,23 +5,22 @@ import { connect } from 'react-redux';
 import { ROUTE_PATH } from '../Routes';
 
 const LoginRequired = ({ component: Component, isPersisted, token, ...props }) => {
-  if (isPersisted === true && token) {
+  if (isPersisted === false) return (<div />);
+  if (token) {
     return (
       <Route {...props} render={props => (<Component {...props} />)} />
     );
-  } else if (isPersisted === true && !token) {
+  } else if (!token) {
     return (
       <Redirect to={ROUTE_PATH.LOGIN} />
     );
   }
-  return (<div>loading...</div>);
 };
 
 function mapStateToProps(state) {
-  const { auth } = state;
   return {
-    token: auth.token,
-    isPersisted: Boolean(auth.isPersisted)
+    token: state.auth.token,
+    isPersisted: state.config.isPersisted,
   };
 }
 

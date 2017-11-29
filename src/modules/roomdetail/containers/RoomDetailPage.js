@@ -46,6 +46,7 @@ import mapImage from '../../../images/test.jpg';
    
   }
   componentWillMount(){
+    console.log('zzz')
     this.props.loadRoom(this.props.match.params.id);
   }
   constructor(props) {
