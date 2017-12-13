@@ -20,20 +20,31 @@ export function* getUserByID(action) {
     const { data } = response;
     yield put(fetchingUserSuccess(data)); 
   } catch(error) {
-    console.log('error', error);
     const errors = _.get(error, 'response.data.errors', 'unknow');
     yield put(fetchingUserFail(errors));
   }
 }
 export function* putUserByID(action) {
   try {
-    const {  username,first_name,last_name,phone,email } = action;
-    console.log(username);
-    const response = yield call(request, putUser(username,first_name,last_name,phone,email ));
+    const {  username,first_name,last_name,phone,email,avatar} = action;
+
+    let datat = new FormData();
+    console.log(avatar)
+    datat.append('avatar', avatar);    
+    datat.append('first_name', first_name);
+    datat.append('last_name', last_name);
+    datat.append('phone', phone);
+    datat.append('username', username);
+    datat.append('email', email);
+  
+    console.log(action);
+    const response = yield call(request, putUser(datat));
+
     const { data } = response;
     yield put(updatingUserSuccess(data)); 
+
+
   } catch(error) {
-    console.log('error', error);
     const errors = _.get(error, 'response.data.errors', 'unknow');
     yield put(updatingUserFail(errors));
   }

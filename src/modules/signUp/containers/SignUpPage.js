@@ -4,7 +4,7 @@ import DocumentTitle from 'react-document-title';
 import TextField from 'material-ui/TextField';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
-import { authSignUp, flushErrorLogin } from '../../../redux/modules/authReducer'
+import { authSignUp, flushErrorLogin ,flushTempData} from '../../../redux/modules/authReducer'
 
 import { ContainerWrapperStyled, TextFieldStyled, ButtonStyled, LoadingProgressStyled, ErrorPanelStyled } from '../../core/stylesheets/core.styles'
 import { PaperStyled, } from '../stylesheets/signUp.style'
@@ -31,6 +31,11 @@ class SignUpPage extends Component {
   componentWillMount() {
     console.log(this.props);
     this.props.flushError();
+  }
+  
+  componentWillUnmount(){
+    this.props.flushTempData();
+    
   }
   handleSignUp = () => {
     const { username, password,first_name,last_name,phone,email,user_type_id,repassword} = this.state;
@@ -62,10 +67,14 @@ class SignUpPage extends Component {
     this.setState(state);
   }  
   render() {
-    const { error, isLogging, isAuth} = this.props;
+    const { error, isLogging, isAuth,isSignUpSuccess} = this.props;
     const { username, password,first_name,last_name,phone,email,repassword } = this.state;
    
-
+    if (isSignUpSuccess) {
+      return (
+        <Redirect to={ROUTE_PATH.LOGIN} />
+      )
+    }
     return (
       <DocumentTitle title="Booking App - Login">
         <ContainerWrapperStyled>
@@ -167,12 +176,16 @@ class SignUpPage extends Component {
 export const mapPropsToState = (state) => ({
   error: state.auth.errorMessage,
   isLogging: state.auth.isLogging,
+  isLogging: state.auth.isLogging,
+  isSignUpSuccess: state.auth.isSignUpSuccess,  
   isAuth: state.config.isPersisted && Boolean(state.auth.token),
 })
 
 export const mapProps = dispatch => ({
   signUp: (username, password,first_name,last_name,phone,email,user_type_id,repassword) => dispatch(authSignUp(username, password,first_name,last_name,phone,email,user_type_id,repassword)),
   flushError: () => dispatch(flushErrorLogin()),
+  flushTempData: () => dispatch(flushTempData()),
+  
 })
 
 export default connect(mapPropsToState, mapProps)(SignUpPage);

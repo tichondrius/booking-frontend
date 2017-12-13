@@ -22,9 +22,9 @@ export const fetchingUser = (username) => ({
     user,
   })   
   
-  export const updatingUser = (username,first_name,last_name,phone,email) => ({
+  export const updatingUser = (username,first_name,last_name,phone,email,avatar) => ({
     type: USER_PUT,
-    username,first_name,last_name,phone,email
+    username,first_name,last_name,phone,email,avatar
   });
   
   export const updatingUserFail = (errors) => ({
@@ -64,6 +64,7 @@ const userReducer = (state = initialState, action = {}) => {
           ...state,
           fetching: true,
           errorMessage: null,
+          isUpdated: false
         }
   
       case USER_GET_SUCCESS:
@@ -103,7 +104,7 @@ const userReducer = (state = initialState, action = {}) => {
         return {
             ...state,
             fetching: false,
-             errorMessage: action.errorMessage,
+             errorMessage: action.errors,
         }
         
       default:

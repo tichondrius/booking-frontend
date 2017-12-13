@@ -9,6 +9,8 @@ export const AUTH_SIGNUP_FAILE = 'auth/AUTH_SIGNUP_FAILE';
 export const AUTH_LOGOUT = 'auth/AUTH_LOGOUT';
 export const FLUSH_LOGIN = 'auth/FLUSH_LOGIN';
 export const FLUSH_ERROR_LOGIN = 'auth/FLUSH_ERROR_LOGIN';
+export const FLUSH_TEMP_DATA = 'auth/FLUSH_TEMP_DATA';
+
 
 
 export const authLogin = (username, password) => ({
@@ -35,6 +37,9 @@ export const flushErrorLogin = () => ({
   type: FLUSH_ERROR_LOGIN,
 });
 
+export const flushTempData = () => ({
+  type: FLUSH_TEMP_DATA,
+});
 
 
 //#region SIGN UP
@@ -63,7 +68,7 @@ const initialState = {
   username: null,
   isLogging: false,
   errorMessage: null,
-
+  isSignUpSuccess: false,
 }
 
 const authReducer = (state = initialState, action = {}) => {
@@ -105,7 +110,7 @@ const authReducer = (state = initialState, action = {}) => {
         isLogging: false,
         token: action.token,
         username: action.username,
-
+        isSignUpSuccess: true,
       }
 
     case AUTH_SIGNUP_FAILE:
@@ -128,6 +133,12 @@ const authReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         errorMessage: null,
+      }
+    }
+    case FLUSH_TEMP_DATA: {
+      return {
+        ...state,
+        isSignUpSuccess: false,
       }
     }
 
