@@ -8,7 +8,7 @@ import { SignUpPage } from './modules/signUp/containers';
 import { UserPage } from './modules/userPage/containers';
 
 import { RoomDetailPage } from './modules/roomdetail/containers';
-
+import { MapsPage } from './modules/map/containers'
 import { SearchPage  } from './modules/search/containers';
 import configureStore from './redux/configureStore'
 
@@ -26,6 +26,7 @@ export const ROUTE_PATH = {
   SIGNUP: '/signup',
   PAGE1: '/page1',
   PAGE2: '/page2',
+  MAPS: '/maps',
   ROOMDETAILS: '/room/:id',
   USERPAGE: '/user/edit'
 }
@@ -51,7 +52,7 @@ export default class Routes extends Component {
                 <Route path={ROUTE_PATH.SEARCH} component={SearchPage} />
                 <Route path={ROUTE_PATH.LOGIN} component={LoginPage} />
                 <Route path={ROUTE_PATH.SIGNUP} component={SignUpPage} />
-                
+                <Route path={ROUTE_PATH.MAPS} component={MapsPage} />
                 <Route path={ROUTE_PATH.PAGE1} component={FakePage1} />
                 <Route path={ROUTE_PATH.ROOMDETAILS} component={RoomDetailPage} />
                 <LoginRequired path={ROUTE_PATH.USERPAGE} exact component={UserPage} />

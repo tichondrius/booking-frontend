@@ -16,17 +16,15 @@ const RoomItem = (props) => {
             avatar={mapImage}
           />
           <CardMedia
-            overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
           >
-            <img style={{width: '100%', height: 150}} src={mapImage} alt="" />
+            <img style={{width: '100%', height: 150}} src={room.url} alt="" />
           </CardMedia>
           <CardTitle title={room.title} subtitle="Card subtitle" />
           <CardText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+           <p>Giá: {room.price}</p>
           </CardText>
           <CardActions>
-            <FlatButton label="Chi tiết" onClick={() => redirectPath(`room/${1}`)}/>
+            <FlatButton label="Chi tiết" onClick={() => redirectPath(`room/${room._id}`)}/>
             <FlatButton label="Yêu thích" />
           </CardActions>
         </Card>
