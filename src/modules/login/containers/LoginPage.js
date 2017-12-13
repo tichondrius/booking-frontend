@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import { authLogin, flushErrorLogin } from '../../../redux/modules/authReducer'
+import {FlatButton} from 'material-ui';
 
 import { ContainerWrapperStyled, TextFieldStyled, ButtonStyled, LoadingProgressStyled, ErrorPanelStyled } from '../../core/stylesheets/core.styles'
 import { PaperStyled, } from '../stylesheets/login.page.style'
@@ -19,6 +20,7 @@ class LoginPage extends Component {
     };
   }
   componentWillMount() {
+    console.log(this.props);
     this.props.flushError();
   }
   handleLogin = () => {
@@ -48,7 +50,7 @@ class LoginPage extends Component {
            Array.isArray(error) && error.length > 0 &&
            <ErrorPanelStyled>
               { error.map(err => (
-                <li>
+                <li key=''>
                   {err}
                 </li>
               ))}
@@ -72,6 +74,11 @@ class LoginPage extends Component {
             {
               isLogging && <LoadingProgressStyled mode="indeterminate"/>
             }
+
+            <p>
+               Bạn chưa có tài khoản:  <FlatButton label="Đăng ký" primary={true} onClick={()=> this.props.history.push(ROUTE_PATH.SIGNUP)} />
+              
+            </p>
           </PaperStyled>
         </ContainerWrapperStyled>    
       </DocumentTitle>

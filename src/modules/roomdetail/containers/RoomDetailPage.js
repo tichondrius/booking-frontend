@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
 import { Redirect } from 'react-router-dom';
-import { RomApi } from '../../api';
-import axios from 'axios';
 import Divider from 'material-ui/Divider';
 import {
   ContainerWrapperStyled,

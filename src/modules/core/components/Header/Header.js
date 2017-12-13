@@ -15,7 +15,7 @@ import Drawer from 'material-ui/Drawer';
 import { HeaderWrapperStyled } from '../../stylesheets/header.style';
 import { openDrawer, closeDrawer, toggleDrawer } from '../../../../redux/modules/uiReducer';
 import { authLogin, authLogout } from '../../../../redux/modules/authReducer'
-import { LoginButton, LoggedButton } from '../../components';
+import { LoginButton, LoggedButton} from '../../components';
 import { ROUTE_PATH } from '../../../../Routes';
 
 const Header = (props) => {
@@ -31,14 +31,20 @@ const Header = (props) => {
     changeCloseDrawer();
     props.history.push(routePath);
   }
+  const menuRoute = (routePath) => {
+    props.history.push(routePath);
+  }
   const iconRight = wasLogged ?  
-    <LoggedButton onLogout={() => logout()}/> : 
+    <LoggedButton onLogout={() => logout()} onChangePath={(routePath)=> menuRoute(routePath)} /> : 
     <LoginButton onClick={() => props.history.push(ROUTE_PATH.LOGIN)}/>
+
   return (
     <HeaderWrapperStyled>
       <AppBar
         onLeftIconButtonTouchTap={() => changeStateDrawer()}
+        
         iconElementRight={iconRight}
+        
         title="Booking app"
       />
       <Drawer open={isDrawerOpening}>
