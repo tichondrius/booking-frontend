@@ -24,7 +24,7 @@ class SignUpPage extends Component {
      last_name: '',
      phone: '',
      email: '',
-     user_type_id: 1,
+     user_type_id: 2,
      repassword: '',
     };
   }
@@ -146,8 +146,8 @@ class SignUpPage extends Component {
                 value={this.state.user_type_id}
                 onChange={this.handleChange}
               >
-                <MenuItem value={1} primaryText="Người thuê" />
-                <MenuItem value={2} primaryText="Người cho thuê" />
+                <MenuItem value={2} primaryText="Người thuê" />
+                <MenuItem value={3} primaryText="Người cho thuê" />
               </SelectField>
             <TextFieldStyled
                 fullWidth={true}

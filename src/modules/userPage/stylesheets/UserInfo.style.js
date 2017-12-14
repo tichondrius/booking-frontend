@@ -25,3 +25,13 @@ margin-bottom: 10px;
   padding: 3px;
 }
 `;
+
+export const ImgContainer = styled.div`
+display: flex;
+margin-bottom: 10px;
+
+@media(max-width: 840px){
+  flex-direction: column;
+  padding: 3px;
+}
+`;

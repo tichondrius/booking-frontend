@@ -11,7 +11,7 @@ import { Row, Column } from '../../core/stylesheets/column-row.styles';
 
 
 
-export class UserPage extends Component {
+export class NewPostPage extends Component {
   constructor(props) {
     super(props);
   }
@@ -28,10 +28,10 @@ export class UserPage extends Component {
           
           <Row>
             <Column md="3" sm="3">
-              <MenuPanel redirect={(path)=>this.redirectPath(path)} username={username}/>
+              <MenuPanel  redirect={(path)=>this.redirectPath(path)} username={username}/>
             </Column>
             <Column md="9" sm="9">
-              <InforUser username={username}/>
+              <NewPost username={username}/>
             </Column>
           </Row>
         </ContainerWrapperStyled>
@@ -54,4 +54,4 @@ export const mapStateToProps = state => {
 //   fetchingUser: () => dispatch(fetchingUser()), 
 // }) 
 
-export default connect(mapStateToProps)(UserPage);
+export default connect(mapStateToProps)(NewPostPage);
