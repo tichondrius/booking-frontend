@@ -15,7 +15,7 @@ const FormSearch = (props) => {
           </CardStyled>
           <CardStyled style={{ flex: 1}}>
             <CardHeaderStyled title="Đánh giá của khách" />
-            <RatingFilter />
+            {/* <RatingFilter /> */}
           </CardStyled>
           <CardStyled style={{ flex: 1}}>
             <CardHeaderStyled title="Giá" />

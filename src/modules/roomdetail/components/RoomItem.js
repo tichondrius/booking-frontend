@@ -24,7 +24,7 @@ const RoomItem = (props) => {
            <p>Giá: {room.price}</p>
           </CardText>
           <CardActions>
-            <FlatButton label="Chi tiết" onClick={() => redirectPath(`room/${room._id}`)}/>
+            <FlatButton label="Chi tiết" onClick={() => redirectPath(`room/${room.id}`)}/>
             <FlatButton label="Yêu thích" />
           </CardActions>
         </Card>
