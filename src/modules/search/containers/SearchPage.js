@@ -8,7 +8,8 @@ import { LoadingComponent } from '../../core/components';
 import { ContainerWrapperStyled, ButtonStyled, CardStyled } from '../../core/stylesheets/core.styles';
 import { Row, Column } from '../../core/stylesheets/column-row.styles'; 
 import { MapContainerStyled } from '../stylesheets/search.style';
-import { RoomItem } from '../../roomdetail/components'
+import { RoomItem } from '../../roomdetail/components';
+import { ROUTE_PATH } from '../../../Routes';
 
 
 export class SearchPage extends Component {
@@ -30,13 +31,13 @@ export class SearchPage extends Component {
           <Row>
             <Column md="3" sm="3">
               <MapContainerStyled>
-                <ButtonStyled label="Đến bản đồ"></ButtonStyled>
+                <ButtonStyled onClick={() => this.redirectPath('/maps')} label="Đến bản đồ"></ButtonStyled>
               </MapContainerStyled>
               <FormSearch />
             </Column>
             <Column md="9" sm="9">
               {
-                rooms.map(room => <RoomItem redirectPath={this.redirectPath} room={room}/>)
+                rooms.map(room => <RoomItem key={room.id} redirectPath={this.redirectPath} room={room}/>)
               }
               {
                 isFetching && <LoadingComponent />
