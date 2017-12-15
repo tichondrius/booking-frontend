@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import Paper from 'material-ui/Paper';
+import { Card } from 'material-ui/Card';
 
 export const PaperStyled = styled(Paper)`
   width: 100%;
@@ -13,6 +14,10 @@ export const PaperStyled = styled(Paper)`
     width: 100%;
   }
   
+`;
+export const PostCard = styled(Card)`
+margin-bottom: 10px;
+
 `;
 
 

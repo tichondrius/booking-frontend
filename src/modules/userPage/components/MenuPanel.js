@@ -53,7 +53,7 @@ class MenuPanel extends Component {
                    </div>
                   } */}
                   {/* For test */}
-                  <ListItem primaryText="Danh sách bài đăng" leftIcon={<ActionReceipt />} />
+                  <ListItem primaryText="Danh sách bài đăng"onClick={()=>redirect(ROUTE_PATH.POSTLIST)}  leftIcon={<ActionReceipt />} />
                 <ListItem primaryText="Danh sách chờ duyệt" leftIcon={<ActionGroupWork />} />
                 <ListItem primaryText="Đăng bài"  onClick={()=>redirect(ROUTE_PATH.NEWPOST)}  leftIcon={<ContentAdd />} />
                 

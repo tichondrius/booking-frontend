@@ -23,7 +23,7 @@ export class NewPostPage extends Component {
   render() {
     const { username } = this.props;
     return (
-      <DocumentTitle title="Booking App - Search">
+      <DocumentTitle title="Booking App - New">
         <ContainerWrapperStyled>
           
           <Row>

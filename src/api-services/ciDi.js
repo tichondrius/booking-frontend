@@ -9,3 +9,6 @@
     url: 'api/districts',
     method: 'GET',
   })
+
+
+  

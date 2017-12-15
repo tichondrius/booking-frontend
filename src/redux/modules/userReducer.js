@@ -49,6 +49,11 @@ const initialState = {
         avatar:null
 
     },
+    users:{
+      users: [],
+      isFetching: false,
+      errors: null,
+    },
     fetching: false,
     fetched: false,
     errorMessage: null,
@@ -64,7 +69,7 @@ const userReducer = (state = initialState, action = {}) => {
           ...state,
           fetching: true,
           errorMessage: null,
-          isUpdated: false
+          isUpdated : false,
         }
   
       case USER_GET_SUCCESS:

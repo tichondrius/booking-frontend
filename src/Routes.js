@@ -11,6 +11,8 @@ import { RoomDetailPage } from './modules/roomdetail/containers';
 import { MapsPage } from './modules/map/containers'
 import { SearchPage  } from './modules/search/containers';
 import { NewPostPage  } from './modules/userPage/containers';
+import { UserPostListPage  } from './modules/userPage/containers';
+import { UserBookingListPage  } from './modules/userPage/containers';
 
 import configureStore from './redux/configureStore'
 
@@ -32,6 +34,9 @@ export const ROUTE_PATH = {
   ROOMDETAILS: '/room/:id',
   USERPAGE: '/user/edit',
   NEWPOST: '/user/post/new',
+  POSTLIST: '/user/posts',
+  USERSPOSTLIST: '/posts/:id/users',
+  
   
 }
 const FakeLogin = () => (
@@ -61,6 +66,9 @@ export default class Routes extends Component {
                 <Route path={ROUTE_PATH.ROOMDETAILS} component={RoomDetailPage} />
                 <LoginRequired path={ROUTE_PATH.USERPAGE} exact component={UserPage} />
                 <LoginRequired path={ROUTE_PATH.NEWPOST} exact component={NewPostPage} />
+                <LoginRequired path={ROUTE_PATH.POSTLIST} exact component={UserPostListPage} />
+                <LoginRequired path={ROUTE_PATH.USERSPOSTLIST} exact component={UserBookingListPage} />
+                
                 
                 <LoginRequired path={ROUTE_PATH.PAGE2} exact component={FakePage2} />
                 <Redirect from={ROUTE_PATH.ROOT} to={ROUTE_PATH.HOME} />

@@ -57,8 +57,10 @@ class InforUser extends Component {
       }
       handleRequestClose(){
         this.setState({
-            isUpdated:false,
-        })
+          isUpdated:false,
+      })
+        this.props.fetchingUser(this.state.username);
+
       }
       handleChangeText = (fieldName, value) => {
         const state = {};
@@ -71,7 +73,8 @@ class InforUser extends Component {
         const { first_name,last_name,phone,email,avatar } = nextProps;
         const { isUpdated} = nextProps;
         if(isUpdated === true){
-            this.props.fetchingUser(this.state.username);
+            // this.props.fetchingUser(this.state.username);
+            this.setState({isUpdated});
         
         }else{
           this.setState({
@@ -92,7 +95,7 @@ class InforUser extends Component {
           return <LoadingComponent/>
         }
         return (
-            <DocumentTitle title="Booking App - Login">
+
         <Container>
         
           <h1>Thông tin tài khoản</h1>
@@ -172,11 +175,12 @@ class InforUser extends Component {
                 message="Sửa thành công"
                 autoHideDuration={4000}
                 onRequestClose={this.handleRequestClose}
+                autoHideDuration={500}
         />
         
           </PaperStyled>
         </Container>    
-      </DocumentTitle>
+
         );
     }
 }

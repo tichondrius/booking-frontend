@@ -69,6 +69,7 @@ const initialState = {
   isLogging: false,
   errorMessage: null,
   isSignUpSuccess: false,
+  
 }
 
 const authReducer = (state = initialState, action = {}) => {

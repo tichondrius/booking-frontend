@@ -1,12 +1,21 @@
 import { REHYDRATE } from 'redux-persist/constants';
-import { takeEvery, call, take, put, all, select } from 'redux-saga/effects';
+import { takeEvery, call, take, put, all, select, takeLatest } from 'redux-saga/effects';
 import _ from 'lodash';
 import {
 
   POST_POST,
-    postingPost,postingPostSuccess,postingPostFail
+    postingPost,postingPostSuccess,postingPostFail,
+
+    GET_POSTS,
+    fetchingPosts,fetchPostSuccess,fetchPostFail,
+
+    GETUSERS_POST,
+    fetchingUserBookPost,fetchUserBookPostFail,fetchUserBookPostSuccess,
+
+    UPDATESTATUS_POST,
+    updateStatusPost,updateStatusPostFail,updateStatusPostSuccess
   } from '../modules/postsReducer'
-import {postPosts } from '../../api-services/post';
+import {postPosts,getPostByUser ,getListCustomerByOrder,updateStatusAPI} from '../../api-services/post';
 import request from './coreSaga';
 
 
@@ -22,19 +31,27 @@ export function* postNewPost(action) {
     datat.append('title', title);    
     datat.append('user_id', 21);
     datat.append('description', description);
-    datat.append('city_id', city_id);
-    datat.append('district_id', district_id);
+    if(city_id != -1){
+      datat.append('city_id', city_id);
+    }
+    if(city_id != -1){
+     datat.append('district_id', district_id); 
+      }
     datat.append('address', address);
-    datat.append('price', price);
-    datat.append('price2', price);
-    datat.append('images', images);
+    datat.append('price', 1232123);
+    datat.append('price2', 21321);
+    images.map((value)=>{
+      datat.append('images', value);
+    
+    })
     datat.append('room_type_id', room_type_id);
-    
-    
-    
-    
+    datat.append('acreage', 2312);
+    datat.append('longtitude', 1);
+    datat.append('latitude', 3);
 
-
+    
+    
+  
     const response = yield call(request, postPosts(datat));
     const { data } = response;
     yield put(postingPostSuccess(data)); 
@@ -45,10 +62,55 @@ export function* postNewPost(action) {
   }
 }
 
+export function* getPosts() {
+  try {
+    const response = yield call(request, getPostByUser());
+    const { data } = response;
+    yield put(fetchPostSuccess(data)); 
+  } catch(error) {
+    console.log('error', error);
+    const errors = _.get(error, 'response.data.errors', 'unknow');
+    yield put(fetchPostFail(errors));
+  }
+}
+
+export function* getUserListsPost(action) {
+  try {
+    console.log(action);
+    const {userID,postID} =action;
+    const response = yield call(request, getListCustomerByOrder(userID,postID));
+    const { data } = response;
+    yield put(fetchUserBookPostSuccess(data)); 
+  } catch(error) {
+    console.log('error', error);
+    const errors = _.get(error, 'response.data.errors', 'unknow');
+    yield put(fetchUserBookPostFail(errors));
+  }
+}
+
+
+export function* updateStatus(action) {
+  try {
+    const {postID,status} =action;
+    const response = yield call(request, updateStatusAPI(postID,status));
+    const { data } = response;
+    yield put(updateStatusPostSuccess(data)); 
+  } catch(error) {
+    console.log('error', error);
+    const errors = _.get(error, 'response.data.errors', 'unknow');
+    yield put(updateStatusPostFail(errors));
+  }
+}
+
 
 export default function* postSagaFlow() {
   yield all([
     takeEvery([POST_POST], postNewPost),
+    takeEvery([GET_POSTS], getPosts),
+    takeEvery([GETUSERS_POST], getUserListsPost),
+    takeLatest([UPDATESTATUS_POST], updateStatus),
+    
+    
 
     
   ]);
