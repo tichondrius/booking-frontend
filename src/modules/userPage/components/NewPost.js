@@ -21,25 +21,27 @@ import  ListCity  from "./ListCity";
 import  ListDistricts  from "./ListDistricts";
 import  ImagesList  from "./ImagesList";
 import  GoogleMapReact  from "google-map-react";
-
+import { Marker } from "../../map/components";
 
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import markerImageSrc from '../../../images/marker.png';  
 
 const AnyReactComponent = ({ text }) => (
-  <div style={{
-    position: 'relative', color: 'white', background: 'red',
-    height: 40, width: 60, top: -20, left: -30,    
-  }}>
-    {text}
-  </div>
+  // <div style={{
+  //   position: 'relative', color: 'white', background: 'red',
+  //   height: 40, width: 60, top: -20, left: -30,    
+  // }}>
+  //   {text}
+  // </div>
+  <img src={markerImageSrc} style={{cursor: 'pointer'}} />
 );
 
 
 class NewPost extends Component {
   static defaultProps = {
-    center: {lat: 59.95, lng: 30.33},
-    zoom: 11
+    center: {lat: 10.765, lng: 106.669},
+    zoom: 15
   };
 
 
@@ -51,7 +53,8 @@ class NewPost extends Component {
             districts:[],
             title:'',
             city_id:-1,
-        
+            lat: 10.765,
+            lng: 106.669,
             district_id:-1,
             room_type_id:'',
             address:'',
@@ -78,7 +81,7 @@ class NewPost extends Component {
         
       }
       handlePut = () => {
-        const {title,username,description,	city_id,	district_id,address,	price,room_type_id,userId} = this.state;
+        const {title,username,description,	city_id,	district_id,address,	price,room_type_id,userId,lng,lat} = this.state;
         // console.log(avatar);
         const {imgeString} = this.state;
         let images = []
@@ -90,7 +93,7 @@ class NewPost extends Component {
         })
         console.log(userId);
         console.log(images);
-         this.props.postingPost(title,'',description,	city_id,	district_id,address,	price,price,images,room_type_id,userId)
+         this.props.postingPost(title,'',description,	city_id,	district_id,address,	price,price,images,room_type_id,userId,lng,lat)
       }
       handleMoreImgClick(){
         console.log(this.state.currentImgeCount);
@@ -147,7 +150,9 @@ class NewPost extends Component {
             imgeString,
             imgePath,
             currentImgeCount: 2,
-            currentSelect : 0
+            currentSelect : 0,
+            lng: 106.669254,
+            lat: 10.7658129,
         })
       }
       handleChangeText = (fieldName, value) => {
@@ -179,6 +184,13 @@ class NewPost extends Component {
         
 
       }
+      handleChangePos(value){
+        const{lng,lat} = value;
+        this.setState({
+          lng,
+          lat
+        })
+      }
       clearState(){
         this.setState({
           title:''
@@ -187,7 +199,7 @@ class NewPost extends Component {
     render() {
         const { errors, isLogging, isAuth,fetching,cities,districts} = this.props;
 
-        const { room_type_id,title,description,	city_id,	district_id,address,	price,price2,currentImgeCount,imgePath,isUpdated} = this.state;
+        const { room_type_id,title,description,	city_id,	district_id,address,	price,price2,currentImgeCount,imgePath,isUpdated,lng,lat} = this.state;
         // if(isUpdated){
         //     //this.clearState();
         //  }
@@ -274,18 +286,23 @@ class NewPost extends Component {
             <p/>
          
             <Container>
+              <h3>Chọn tọa độ (Click để chọn)</h3>
             <div style={{height:'500px',width:'500px'}}>
+              
                 <GoogleMapReact 
+                onClick={(value)=> this.handleChangePos(value)}
             defaultCenter={this.props.center}
             defaultZoom={this.props.zoom}
           >
             <AnyReactComponent
-              lat={59.955413}
-              lng={30.337844}
+              lat={lat}
+              lng={lng}
               text={'Kreyser Avrora'}
             />
           </GoogleMapReact>
+        
             </div>
+            <h3>Chọn hình cho chỗ cung cấp của bạn</h3> <br/>
               {/* <ImgContainer>
                 <span>Chọn hình </span>
                 <img style={{width:'200px',height:'200px',flex:1}} src={imgSrc}/>
@@ -354,7 +371,7 @@ export const mapStateToProps = state => {
   
 
 export const mapDispatchToProps = dispatch => ({
-  postingPost: (title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id) => dispatch(postingPost(title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id)), 
+  postingPost: (title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id,lng,lat) => dispatch(postingPost(title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id,lng,lat)), 
   fetchingCities: ()=> dispatch(fetchingCities()),
   fetchingDistricts: ()=> dispatch(fetchingDistricts()),
   

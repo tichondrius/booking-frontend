@@ -25,13 +25,8 @@ class MenuPanel extends Component {
     }
     render() {
         const { username,avatar,user_type_id,redirect} = this.props;
-        let type = "";
-        if(user_type_id=== 2){
-            type="Người thuê"
-        }else if(user_type_id===3){
-            type="Người cho thuê"
-            
-        }
+        const type = "admin";
+
         return (
             <List>
                 <ListItem
@@ -44,19 +39,9 @@ class MenuPanel extends Component {
                       secondaryText={type}
                     
                 />
-                  <ListItem primaryText="Thong tin nguoi dung"  onClick={()=>redirect(ROUTE_PATH.USERPAGE)} leftIcon={<ActionGrade />} />
-                  {/* {
-                     user_type_id === 3 &&  <div>
-                     <ListItem primaryText="Danh sách bài đăng" leftIcon={<ActionReceipt />} />
-                     <ListItem primaryText="Danh sách chờ duyệt" leftIcon={<ActionGroupWork />} />
-                     
-                       
-                   </div>
-                  } */}
-                  {/* For test */}
-                  <ListItem primaryText="Danh sách bài đăng"onClick={()=>redirect(ROUTE_PATH.POSTLIST)}  leftIcon={<ActionReceipt />} />
+                  <ListItem primaryText="Thong tin nguoi dung"  onClick={()=>redirect(ROUTE_PATH.ADMINPAGE)} leftIcon={<ActionGrade />} />
                 <ListItem primaryText="Danh sách chờ duyệt" leftIcon={<ActionGroupWork />} />
-                <ListItem primaryText="Đăng bài"  onClick={()=>redirect(ROUTE_PATH.NEWPOST)}  leftIcon={<ContentAdd />} />
+
                 
                  
             </List>

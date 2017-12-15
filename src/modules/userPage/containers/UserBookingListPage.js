@@ -53,7 +53,7 @@ export class UserBookingListPage extends Component {
 
   }
   render() {
-    const { posts,username,isFetching,users,statusErrors} = this.props;
+    const { posts,username,isFetching,users,statusErrors,userId} = this.props;
     
     const{postID,isDone} = this.state;
 
@@ -67,7 +67,7 @@ export class UserBookingListPage extends Component {
 
           <Row>
             <Column md="3" sm="3">
-              <MenuPanel redirect={(path)=>this.redirectPath(path)} username={username}/>
+              <MenuPanel redirect={(path)=>this.redirectPath(path)} username={username} userId={userId}/>
             </Column>
             <Column md="9" sm="9">
               <Container>
@@ -106,13 +106,14 @@ export class UserBookingListPage extends Component {
 
 export const mapStateToProps = state => {
   console.log(state);
-  const { username} = state.auth;
+  const { username,userId} = state.auth;
   const{ isFetching,users,errors} = state.post.users;
   const{ isDone} = state.post.status;
   
   return {
     isFetching,
     users,
+    userId,
     errors,
     username,
     isDone,

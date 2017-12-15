@@ -53,9 +53,9 @@ export const updateStatusPostSuccess = (data) => ({
 })   
 
 //#endregion
-export const postingPost = (title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id) => ({
+export const postingPost = (title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id,lng,lat) => ({
     type: POST_POST,
-    title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id
+    title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id,lng,lat
   });
   
   export const postingPostFail = (errors) => ({

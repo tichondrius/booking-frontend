@@ -13,6 +13,8 @@ import { SearchPage  } from './modules/search/containers';
 import { NewPostPage  } from './modules/userPage/containers';
 import { UserPostListPage  } from './modules/userPage/containers';
 import { UserBookingListPage  } from './modules/userPage/containers';
+import { AdminPage  } from './modules/adminPages/containers/AdminPage';
+
 
 import configureStore from './redux/configureStore'
 
@@ -36,6 +38,8 @@ export const ROUTE_PATH = {
   NEWPOST: '/user/post/new',
   POSTLIST: '/user/posts',
   USERSPOSTLIST: '/posts/:id/users',
+  
+  ADMINPAGE: '/admin/edit',
   
   
 }
@@ -68,6 +72,7 @@ export default class Routes extends Component {
                 <LoginRequired path={ROUTE_PATH.NEWPOST} exact component={NewPostPage} />
                 <LoginRequired path={ROUTE_PATH.POSTLIST} exact component={UserPostListPage} />
                 <LoginRequired path={ROUTE_PATH.USERSPOSTLIST} exact component={UserBookingListPage} />
+                <LoginRequired path={ROUTE_PATH.AdminPAGE} exact component={AdminPage} />
                 
                 
                 <LoginRequired path={ROUTE_PATH.PAGE2} exact component={FakePage2} />

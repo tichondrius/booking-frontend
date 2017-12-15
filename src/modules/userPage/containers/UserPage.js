@@ -28,7 +28,7 @@ export class UserPage extends Component {
           
           <Row>
             <Column md="3" sm="3">
-              <MenuPanel redirect={(path)=>this.redirectPath(path)} username={username}/>
+              <MenuPanel redirect={(path)=>this.redirectPath(path)} username={username}  userId={userId}/>
             </Column>
             <Column md="9" sm="9">
               <InforUser username={username} userId={userId} />

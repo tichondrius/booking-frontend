@@ -28,7 +28,7 @@ export class UserPostListPage extends Component {
     this.props.history.push(path);
   }
   render() {
-    const { posts,username,isFetching} = this.props;
+    const { posts,username,isFetching,userId} = this.props;
     console.log(posts.length);
     return (
       <DocumentTitle title="Booking App - Information">
@@ -36,7 +36,7 @@ export class UserPostListPage extends Component {
           
           <Row>
             <Column md="3" sm="3">
-              <MenuPanel redirect={(path)=>this.redirectPath(path)} username={username}/>
+              <MenuPanel redirect={(path)=>this.redirectPath(path)} username={username} userId={userId}/>
             </Column>
             <Column md="9" sm="9">
               <Container>
@@ -72,7 +72,8 @@ export const mapStateToProps = state => {
     isFetching,
     posts,
     errors,
-
+    username: state.auth.username,
+    userId: state.auth.userId,
     
   };
 }

@@ -3,7 +3,9 @@ import DocumentTitle from 'react-document-title';
 import { connect } from 'react-redux';
 
 import { fetchingUser } from '../../../redux/modules/userReducer'
-import { InforUser,MenuPanel,NewPost } from '../components';
+import { InforUser } from '../../userPage/components';
+import { MenuPanel } from '../components';
+
 import { LoadingComponent } from '../../core/components';
 import { ContainerWrapperStyled, ButtonStyled, CardStyled } from '../../core/stylesheets/core.styles';
 import { Row, Column } from '../../core/stylesheets/column-row.styles'; 
@@ -11,7 +13,7 @@ import { Row, Column } from '../../core/stylesheets/column-row.styles';
 
 
 
-export class NewPostPage extends Component {
+export class AdminPage extends Component {
   constructor(props) {
     super(props);
   }
@@ -23,15 +25,18 @@ export class NewPostPage extends Component {
   render() {
     const { username,userId } = this.props;
     return (
-      <DocumentTitle title="Booking App - New">
+      <DocumentTitle title="Booking App - AdminPage">
         <ContainerWrapperStyled>
           
           <Row>
             <Column md="3" sm="3">
-              <MenuPanel  redirect={(path)=>this.redirectPath(path)} username={username} userId={userId}/>
+              <MenuPanel redirect={(path)=>this.redirectPath(path)}  userId={userId} username={username}/>
             </Column>
             <Column md="9" sm="9">
-              <NewPost username={username} userId={userId}/>
+              <InforUser username={username} userId={userId} />
+
+    
+              
             </Column>
           </Row>
         </ContainerWrapperStyled>
@@ -54,4 +59,4 @@ export const mapStateToProps = state => {
 //   fetchingUser: () => dispatch(fetchingUser()), 
 // }) 
 
-export default connect(mapStateToProps)(NewPostPage);
+export default connect(mapStateToProps)(AdminPage);

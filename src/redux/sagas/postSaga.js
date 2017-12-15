@@ -25,8 +25,8 @@ import request from './coreSaga';
 export function* postNewPost(action) {
   try {
     
-    const { title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id} = action;
-    console.log(images);
+    const { title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id,lng,lat} = action;
+    console.log(lng);
     let datat = new FormData();
     datat.append('title', title);    
     datat.append('user_id', user_id);
@@ -46,8 +46,8 @@ export function* postNewPost(action) {
     })
     datat.append('room_type_id', room_type_id);
     datat.append('acreage', 2312);
-    datat.append('longtitude', 1);
-    datat.append('latitude', 3);
+    datat.append('longtitude', lng);
+    datat.append('latitude', lat);
 
     
     
