@@ -7,9 +7,9 @@ export const USER_PUT = 'user/USER_PUT';
 export const USER_PUT_SUCCESS = 'user/USER_PUT_SUCCESS';
 export const USER_PUT_FAIL = 'user/USER_PUT_FAIL';
 
-export const fetchingUser = (username) => ({
+export const fetchingUser = (userId) => ({
     type: USER_GET,
-    username
+    userId
   });
   
   export const fetchingUserFail = (errors) => ({
@@ -22,9 +22,9 @@ export const fetchingUser = (username) => ({
     user,
   })   
   
-  export const updatingUser = (username,first_name,last_name,phone,email,avatar) => ({
+  export const updatingUser = (username,first_name,last_name,phone,email,avatar,userId) => ({
     type: USER_PUT,
-    username,first_name,last_name,phone,email,avatar
+    username,first_name,last_name,phone,email,avatar,userId
   });
   
   export const updatingUserFail = (errors) => ({

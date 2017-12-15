@@ -17,6 +17,7 @@ class InforUser extends Component {
         console.log(props);
         this.state = {
           username: this.props.username,
+          userId :this.props.userId,
          first_name: '',
          last_name: '',
          phone: '',
@@ -29,12 +30,12 @@ class InforUser extends Component {
         this._handleImageChange = this._handleImageChange.bind(this);
       }
       componentDidMount(){
-        this.props.fetchingUser(this.state.username);
+        this.props.fetchingUser(this.state.userId);
       }
       handleUpdate = () => {
-        const {username,first_name,last_name,phone,email,avatar} = this.state;
+        const {username,first_name,last_name,phone,email,avatar,userId} = this.state;
         console.log(avatar);
-        this.props.updatingUser(username,first_name,last_name,phone,email,avatar);
+        this.props.updatingUser(username,first_name,last_name,phone,email,avatar,userId);
       }
       handleClick(){
         this.refs.fileUploader.click();
@@ -59,7 +60,7 @@ class InforUser extends Component {
         this.setState({
           isUpdated:false,
       })
-        this.props.fetchingUser(this.state.username);
+        this.props.fetchingUser(this.state.userId);
 
       }
       handleChangeText = (fieldName, value) => {
@@ -88,11 +89,22 @@ class InforUser extends Component {
 
       }
     render() {
-        const { errors, isLogging, isAuth,fetching} = this.props;
+        const { errors, isLogging, isAuth,fetching,userId} = this.props;
         const { username,first_name,last_name,phone,email,isUpdated,avatar,imgSrc} = this.state;
-
-        if(fetching){
-          return <LoadingComponent/>
+        console.log(userId);
+        if(fetching || isUpdated=== true){
+          return (
+            <div>
+                <LoadingComponent/>
+                <Snackbar
+                bodyStyle={{backgroundColor:'#4CAF50'}}
+                open={isUpdated}
+                message="Đăng tin  thành công"
+                autoHideDuration={1000}
+                onRequestClose={this.handleRequestClose}
+        />
+          </div>
+          )
         }
         return (
 
@@ -194,7 +206,7 @@ export const mapStateToProps = state => {
     const { user, errorMessage, fetching,isUpdated} = state.user;
     const {first_name,last_name,phone,email,avatar } = user;
     return {
-        
+      userId:state.auth.userId,
         first_name,
         last_name,
         phone,
@@ -209,8 +221,8 @@ export const mapStateToProps = state => {
   
 
 export const mapDispatchToProps = dispatch => ({
-  fetchingUser: (username) => dispatch(fetchingUser(username)), 
-  updatingUser:(username,first_name,last_name,phone,email,avatar) => dispatch(updatingUser(username,first_name,last_name,phone,email,avatar)),
+  fetchingUser: (userId) => dispatch(fetchingUser(userId)), 
+  updatingUser:(username,first_name,last_name,phone,email,avatar,userId) => dispatch(updatingUser(username,first_name,last_name,phone,email,avatar,userId)),
 }) 
 export default connect(mapStateToProps, mapDispatchToProps)(InforUser);
   

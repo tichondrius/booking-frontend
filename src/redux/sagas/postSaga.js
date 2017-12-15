@@ -25,11 +25,11 @@ import request from './coreSaga';
 export function* postNewPost(action) {
   try {
     
-    const { title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id} = action;
+    const { title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id} = action;
     console.log(images);
     let datat = new FormData();
     datat.append('title', title);    
-    datat.append('user_id', 21);
+    datat.append('user_id', user_id);
     datat.append('description', description);
     if(city_id != -1){
       datat.append('city_id', city_id);

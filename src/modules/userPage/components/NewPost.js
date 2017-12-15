@@ -45,8 +45,8 @@ class NewPost extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
         this.state = {
+          userId: this.props.userId,
             cities:[],
             districts:[],
             title:'',
@@ -78,7 +78,7 @@ class NewPost extends Component {
         
       }
       handlePut = () => {
-        const {title,username,description,	city_id,	district_id,address,	price,room_type_id} = this.state;
+        const {title,username,description,	city_id,	district_id,address,	price,room_type_id,userId} = this.state;
         // console.log(avatar);
         const {imgeString} = this.state;
         let images = []
@@ -88,8 +88,9 @@ class NewPost extends Component {
           }
           
         })
+        console.log(userId);
         console.log(images);
-         this.props.postingPost(title,'',description,	city_id,	district_id,address,	price,price,images,room_type_id)
+         this.props.postingPost(title,'',description,	city_id,	district_id,address,	price,price,images,room_type_id,userId)
       }
       handleMoreImgClick(){
         console.log(this.state.currentImgeCount);
@@ -192,7 +193,13 @@ class NewPost extends Component {
         //  }
  
         if(fetching){
-          return <LoadingComponent/>
+          return (
+            <div>
+                <LoadingComponent/>
+
+            </div>
+          )
+        
         }
         return (
  
@@ -295,14 +302,19 @@ class NewPost extends Component {
               <ButtonStyled disabled={isLogging} onClick={()=> this.handleMoreImgClick()}  label="Thêm hình" primary={true} fullWidth={true}/>
               
             </Container>
-            
+            <Snackbar
+                bodyStyle={{backgroundColor:'#4CAF50'}}
+                open={isUpdated}
+                message="Đăng tin  thành công"
+                autoHideDuration={1000}
+                onRequestClose={this.handleRequestClose}/>
     
             
       
             {/*
 
             */}
-        
+
               <input type="file" id="file" ref="fileUploader" style={{display: "none"}} accept="image/*" onChange={(e)=>this._handleImageChange(e)}/>
             
 
@@ -315,13 +327,7 @@ class NewPost extends Component {
             {
               isLogging && <LoadingProgressStyled mode="indeterminate"/>
             }
-             <Snackbar
-                bodyStyle={{backgroundColor:'#4CAF50'}}
-                open={isUpdated}
-                message="Đăng tin  thành công"
-                autoHideDuration={1000}
-                onRequestClose={this.handleRequestClose}
-        />
+           
         
           </PaperStyled>
         </Container>    
@@ -342,12 +348,13 @@ export const mapStateToProps = state => {
          districts: state.ciDi.districts.districts,
          errors: state.post.errorMessage,
          isUpdated: state.post.isUpdated,
+
     };
   }
   
 
 export const mapDispatchToProps = dispatch => ({
-  postingPost: (title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id) => dispatch(postingPost(title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id)), 
+  postingPost: (title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id) => dispatch(postingPost(title,username,description,	city_id,	district_id,address,	price,price2,images,room_type_id,user_id)), 
   fetchingCities: ()=> dispatch(fetchingCities()),
   fetchingDistricts: ()=> dispatch(fetchingDistricts()),
   

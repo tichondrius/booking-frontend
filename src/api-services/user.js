@@ -1,6 +1,6 @@
-export const getUser = (username) => ({
+export const getUser = (userId) => ({
   method: 'GET',
-  url: 'api/users/21',
+  url: `api/users/${userId}`,
 
 });
 
@@ -15,8 +15,8 @@ export const getUser = (username) => ({
 
 
 
-export const putUser = (datat) => ({
+export const putUser = (datat,userId) => ({
   method: 'PUT',
-  url: 'api/users/21',
+  url: `api/users/${userId}`,
   data: datat
 });

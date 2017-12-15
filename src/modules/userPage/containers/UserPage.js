@@ -21,7 +21,7 @@ export class UserPage extends Component {
     this.props.history.push(path);
   }
   render() {
-    const { username } = this.props;
+    const { username,userId } = this.props;
     return (
       <DocumentTitle title="Booking App - Information">
         <ContainerWrapperStyled>
@@ -31,7 +31,7 @@ export class UserPage extends Component {
               <MenuPanel redirect={(path)=>this.redirectPath(path)} username={username}/>
             </Column>
             <Column md="9" sm="9">
-              <InforUser username={username}/>
+              <InforUser username={username} userId={userId} />
     
               
             </Column>
@@ -43,11 +43,11 @@ export class UserPage extends Component {
 }
 
 export const mapStateToProps = state => {
-  const { username} = state.auth;
+  const { username,userId} = state.auth;
   console.log(username);
   
   return {
-    username
+    username,userId
 
   };
 }

@@ -23,10 +23,10 @@ export const authLogout = () => ({
   type: AUTH_LOGOUT,
 });
 
-export const authLoginSuccess = ({ token, username }) => ({
+export const authLoginSuccess = ({ token, username,userId}) => ({
   type: AUTH_LOGIN_SUCCESS,
   token,
-  username,
+  username,userId
 });
 export const authLoginFaile = (errorMessage) => ({
   type: AUTH_LOGIN_FAILE,
@@ -53,10 +53,11 @@ export const authSignUpFaile = (errorMessage) => ({
   type: AUTH_SIGNUP_FAILE,
   errorMessage,
 });
-export const authSignUpSuccess = ({ token, username }) => ({
+export const authSignUpSuccess = ({ token, username}) => ({
   type: AUTH_SIGNUP_SUCCESS,
   token,
   username,
+  
 });
 //#endregion
 
@@ -69,7 +70,7 @@ const initialState = {
   isLogging: false,
   errorMessage: null,
   isSignUpSuccess: false,
-  
+  userId:null,
 }
 
 const authReducer = (state = initialState, action = {}) => {
@@ -88,6 +89,7 @@ const authReducer = (state = initialState, action = {}) => {
         isLogging: false,
         token: action.token,
         username: action.username,
+        userId: action.userId
       }
 
     case AUTH_LOGIN_FAILE:

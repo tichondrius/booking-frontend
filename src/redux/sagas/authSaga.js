@@ -27,6 +27,7 @@ export function* login(action) {
     yield put(authLoginSuccess({
       token: data.token,
       username: data.username,
+      userId: data.userId,
     }));
   } catch(error) {
     console.log(error);

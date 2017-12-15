@@ -14,9 +14,8 @@ import request from './coreSaga';
 
 export function* getUserByID(action) {
   try {
-    const { username } = action;
-    console.log(username);
-    const response = yield call(request, getUser());
+    const { userId } = action;
+    const response = yield call(request, getUser(userId));
     const { data } = response;
     yield put(fetchingUserSuccess(data)); 
   } catch(error) {
@@ -26,7 +25,7 @@ export function* getUserByID(action) {
 }
 export function* putUserByID(action) {
   try {
-    const {  username,first_name,last_name,phone,email,avatar} = action;
+    const {  username,first_name,last_name,phone,email,avatar,userId} = action;
 
     let datat = new FormData();
     console.log(avatar)
@@ -38,7 +37,7 @@ export function* putUserByID(action) {
     datat.append('email', email);
   
     console.log(action);
-    const response = yield call(request, putUser(datat));
+    const response = yield call(request, putUser(datat,userId));
 
     const { data } = response;
     yield put(updatingUserSuccess(data)); 
